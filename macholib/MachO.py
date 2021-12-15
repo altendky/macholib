@@ -132,6 +132,10 @@ class MachO(object):
             print(f"debug ==== buffer: {buffer!r}")
             if len(buffer) >= target:
                 break
+            print(" *" * 50)
+            print(" *" * 50)
+            print(" *" * 50)
+            print(" *" * 50)
             import time
             time.sleep(0.1)
         header = struct.unpack(">I", buffer)[0]
