@@ -127,6 +127,7 @@ class MachO(object):
         target = 4
         for _ in range(100):
             read = fh.read(target - len(buffer))
+            buffer += read
             print(f"debug ==== read: {read!r}")
             print(f"debug ==== buffer: {buffer!r}")
             if len(buffer) >= target:
