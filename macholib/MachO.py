@@ -122,7 +122,18 @@ class MachO(object):
 
     def load(self, fh):
         assert fh.tell() == 0
-        header = struct.unpack(">I", fh.read(4))[0]
+        print(f"debug ==== fh: {fh!r}")
+        buffer = b""
+        target = 4
+        for _ in range(100):
+            read = fh.read(target - len(buffer))
+            print(f"debug ==== read: {read!r}")
+            print(f"debug ==== buffer: {buffer!r}")
+            if len(buffer) >= target:
+                break
+            import time
+            time.sleep(0.1)
+        header = struct.unpack(">I", buffer)[0]
         fh.seek(0)
         if header in (FAT_MAGIC, FAT_MAGIC_64):
             self.load_fat(fh)
